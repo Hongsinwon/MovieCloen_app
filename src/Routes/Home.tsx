@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useQuery } from "react-query";
-import { getMovies, getUpcoming, getTopRated, IGetMoviesResult } from "../api";
-import { makeImgagePath } from "../utils";
+import { useQuery } from 'react-query';
+import { getMovies, getUpcoming, getTopRated, IGetMoviesResult } from '../api';
+import { makeImgagePath } from '../utils';
 
-import { PathMatch, useMatch, useNavigate } from "react-router-dom";
+import { PathMatch, useMatch, useNavigate } from 'react-router-dom';
 
-import { MovieSlider, MovieModal } from "../Components/index";
+import { MovieSlider, MovieModal } from '../Components/index';
 
 // styled
 import {
@@ -16,25 +16,25 @@ import {
   MoviInfo,
   Overview,
   MainMovie,
-} from "../styled/MainBanner";
+} from '../styled/MainBanner';
 
-import { Slider, SliderTitle } from "../styled/MainConent";
+import { Slider, SliderTitle } from '../styled/MainConent';
 
 const Home = () => {
   const history = useNavigate();
-  const bigMovieMatch: PathMatch<string> | null = useMatch("movies/:movieId");
+  const bigMovieMatch: PathMatch<string> | null = useMatch('movies/:movieId');
 
   // 개봉한 영화
   const { isLoading: movieLoding, data: movieData } =
-    useQuery<IGetMoviesResult>(["movies", "nowPlaying"], getMovies);
+    useQuery<IGetMoviesResult>(['movies', 'nowPlaying'], getMovies);
 
   // 최고의 영화
   const { isLoading: topRatedLoding, data: topRatedData } =
-    useQuery<IGetMoviesResult>(["movies", "topRated"], getTopRated);
+    useQuery<IGetMoviesResult>(['movies', 'topRated'], getTopRated);
 
   // 곧 개봉 예정 영화
   const { isLoading: upcomingLoding, data: upcomingData } =
-    useQuery<IGetMoviesResult>(["movies", "upcoming"], getUpcoming);
+    useQuery<IGetMoviesResult>(['movies', 'upcoming'], getUpcoming);
 
   // 영화 리스트 상세정보
   const onBoxClicked = (movieId: number) => {
@@ -49,7 +49,7 @@ const Home = () => {
       ) : (
         <>
           <Banner
-            bgPhoto={makeImgagePath(movieData?.results[0].backdrop_path || "")}
+            bgPhoto={makeImgagePath(movieData?.results[0].backdrop_path || '')}
           >
             <Title>{movieData?.results[0].title}</Title>
             <MoviInfo>
