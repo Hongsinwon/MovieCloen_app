@@ -40,7 +40,7 @@ const TvModal = ({ modal }: IModal) => {
 
   const onOverlayClick = () => history("/tv"); // tv으로 이동
 
-  const { data: detail, isLoading: bigIsLoading } = useQuery<IGetTvDetail>(
+  const { data: detail } = useQuery<IGetTvDetail>(
     ["tvshow", "detail"],
     () => getTvDetail(modal),
     { enabled: !!modal }

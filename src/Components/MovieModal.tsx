@@ -40,7 +40,7 @@ const Modal = ({ modal }: IModal) => {
 
   const onOverlayClick = () => history('/'); // home으로 이동
 
-  const { data: detail, isLoading: bigIsLoading } = useQuery<IGetMovieDetail>(
+  const { data: detail } = useQuery<IGetMovieDetail>(
     ['search', 'detail'],
     () => getMovieDetail(modal),
     { enabled: !!modal }

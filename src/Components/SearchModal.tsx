@@ -1,5 +1,5 @@
 import { AnimatePresence, useViewportScroll } from 'framer-motion';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { makeImgagePath } from '../utils';
 
 import {
@@ -39,7 +39,7 @@ const SearchList = (modal: IPathname) => {
 
   const onOverlayClick = () => history(-1); // home으로 이동
 
-  const { data: detail, isLoading: bigIsLoading } = useQuery<IGetMovieDetail>(
+  const { data: detail } = useQuery<IGetMovieDetail>(
     ['Movie', 'searchMovie'],
     () => getSearchDetail(modal.type, modal.id),
     { enabled: !!modal.id }
