@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/MovieCloen_app/static/js/main.6ff31099.js",
+    "main.js": "/MovieCloen_app/static/js/main.788cf21b.js",
     "index.html": "/MovieCloen_app/index.html",
-    "main.6ff31099.js.map": "/MovieCloen_app/static/js/main.6ff31099.js.map"
+    "main.788cf21b.js.map": "/MovieCloen_app/static/js/main.788cf21b.js.map"
   },
   "entrypoints": [
-    "static/js/main.6ff31099.js"
+    "static/js/main.788cf21b.js"
   ]
 }
