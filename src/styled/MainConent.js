@@ -1,7 +1,11 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 // 슬라이드
+export const SliderWrapper = styled.div`
+  margin-top: 120px;
+`;
+
 export const Slider = styled.div`
   display: block;
   position: relative;

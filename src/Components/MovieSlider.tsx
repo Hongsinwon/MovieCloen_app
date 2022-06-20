@@ -1,17 +1,17 @@
-import { motion, AnimatePresence } from "framer-motion";
-import styled from "styled-components";
-import { makeImgagePath } from "../utils";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
+import styled from 'styled-components';
+import { makeImgagePath } from '../utils';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // icon
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleLeft,
   faAngleRight,
   faHeart,
   faShareNodes,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
 //styled
 import {
@@ -20,7 +20,7 @@ import {
   Info,
   LeftArrowBtn,
   RightArrowBtn,
-} from "../styled/SliderContent";
+} from '../styled/SliderContent';
 
 interface IMovie {
   id: number;
@@ -54,16 +54,16 @@ const rowVariants = {
 const boxVariants = {
   normal: {
     scale: 1,
-    boxShadow: "0px 0px 5px rgba(0,0,0,0)",
+    boxShadow: '0px 0px 5px rgba(0,0,0,0)',
   },
   hover: {
     scale: 1.3,
-    boxShadow: "0px 0px 30px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,1)",
+    boxShadow: '0px 0px 30px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,1)',
     y: -50,
     transition: {
       delay: 0.5,
       duration: 0.3,
-      type: "tween",
+      type: 'tween',
     },
   },
 };
@@ -75,7 +75,7 @@ const infoVariants = {
     transition: {
       delay: 0.5,
       duration: 0.3,
-      type: "tween",
+      type: 'tween',
     },
   },
 };
@@ -131,10 +131,10 @@ const SliderContent = ({ movies }: SlideContentProps) => {
         <Row
           custom={movement}
           variants={rowVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          transition={{ type: "tween", duration: 1 }}
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+          transition={{ type: 'tween', duration: 1 }}
           key={index}
         >
           {movies &&
@@ -143,14 +143,14 @@ const SliderContent = ({ movies }: SlideContentProps) => {
               .slice(offset * index, offset * index + offset)
               .map((movie) => (
                 <Box
-                  layoutId={movie.id + ""}
+                  layoutId={movie.id + ''}
                   key={movie.id}
-                  whileHover="hover"
-                  initial="normal"
+                  whileHover='hover'
+                  initial='normal'
                   variants={boxVariants}
                   onClick={() => onBoxClicked(movie.id)}
-                  transition={{ type: "tween" }}
-                  bgPhoto={makeImgagePath(movie.poster_path, "w500")}
+                  transition={{ type: 'tween' }}
+                  bgPhoto={makeImgagePath(movie.poster_path, 'w500')}
                 >
                   <Info variants={infoVariants}>
                     <div>
@@ -166,9 +166,9 @@ const SliderContent = ({ movies }: SlideContentProps) => {
                     </div>
 
                     <p>
-                      <span className="mini">개봉일</span>
+                      <span className='mini'>개봉일</span>
                       {movie.release_date}
-                      <span className="mini">평점</span>⭐ {movie.vote_average}{" "}
+                      <span className='mini'>평점</span>⭐ {movie.vote_average}{' '}
                       점
                     </p>
                   </Info>

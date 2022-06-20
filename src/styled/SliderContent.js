@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   height: 540px;
@@ -12,6 +12,12 @@ export const Row = styled(motion.div)`
   position: absolute;
   right: 60px;
   left: 60px;
+
+  &.none {
+    position: relative;
+    right: 0px;
+    left: 0px;
+  }
 `;
 
 export const LeftArrowBtn = styled.button`

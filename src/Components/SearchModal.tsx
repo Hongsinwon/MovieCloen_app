@@ -1,5 +1,5 @@
 import { AnimatePresence, useViewportScroll } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { makeImgagePath } from '../utils';
 
 import {
@@ -13,12 +13,12 @@ import {
   BigOverbiew,
 } from '../styled/MainConent';
 
-import { getMovieDetail, IGetMovieDetail } from '../api';
+import { getSearchDetail, IGetMovieDetail } from '../api';
 import { useQuery } from 'react-query';
-import { useEffect, useState } from 'react';
 
-interface IModal {
-  modal: string;
+interface IPathname {
+  type: string;
+  id: string;
 }
 
 // 영화 List click modal창 on/off animations
@@ -33,26 +33,21 @@ const itemVariants = {
   },
 };
 
-const Modal = ({ modal }: IModal) => {
-  const [modalData, setModalData] = useState<IGetMovieDetail>();
+const SearchList = (modal: IPathname) => {
   const { scrollY } = useViewportScroll();
   const history = useNavigate();
 
-  const onOverlayClick = () => history('/'); // home으로 이동
+  const onOverlayClick = () => history(-1); // home으로 이동
 
   const { data: detail, isLoading: bigIsLoading } = useQuery<IGetMovieDetail>(
-    ['search', 'detail'],
-    () => getMovieDetail(modal),
-    { enabled: !!modal }
+    ['Movie', 'searchMovie'],
+    () => getSearchDetail(modal.type, modal.id),
+    { enabled: !!modal.id }
   );
-
-  useEffect(() => {
-    setModalData(detail);
-  }, [detail]);
 
   return (
     <AnimatePresence>
-      {modal && (
+      {modal.id && (
         <>
           <Overlay
             variants={itemVariants}
@@ -62,36 +57,36 @@ const Modal = ({ modal }: IModal) => {
             transition={{ type: 'tween', duration: 1 }}
           />
 
-          <BigMovie layoutId={modal} style={{ top: scrollY.get() + 200 }}>
-            {modalData && (
+          <BigMovie layoutId={modal.id} style={{ top: scrollY.get() + 200 }}>
+            {detail && (
               <>
                 <BigCover
                   style={{
                     backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImgagePath(
-                      modalData.backdrop_path,
+                      detail.backdrop_path,
                       'w500'
                     )})`,
                   }}
                 />
                 <BigMain>
-                  <BigTitle>{modalData.title}</BigTitle>
+                  <BigTitle>{detail.title}</BigTitle>
                   <BigText>
                     <span>개봉일</span>
-                    {modalData.release_date}
-                    <span>평점</span>⭐ {modalData.vote_average} 점
+                    {detail.release_date}
+                    <span>평점</span>⭐ {detail.vote_average} 점
                     <span>언어</span>
-                    {modalData.original_language.toUpperCase()}
+                    {/* {detail.original_language.toUpperCase()} */}
                   </BigText>
                   <BigImg
                     style={{
                       backgroundImage: `url(${makeImgagePath(
-                        modalData.poster_path,
+                        detail.poster_path,
                         'w200'
                       )})`,
                     }}
                   />
                 </BigMain>
-                <BigOverbiew>{modalData.overview}</BigOverbiew>
+                <BigOverbiew>{detail.overview}</BigOverbiew>
               </>
             )}
           </BigMovie>
@@ -101,4 +96,4 @@ const Modal = ({ modal }: IModal) => {
   );
 };
 
-export default Modal;
+export default SearchList;

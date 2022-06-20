@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { useQuery } from "react-query";
+import styled from 'styled-components';
+import { useQuery } from 'react-query';
 
 import {
   getTvlatest,
   getTvpopular,
   getTvTopRated,
   IGetShowResult,
-} from "../api";
-import { makeImgagePath } from "../utils";
+} from '../api';
+import { makeImgagePath } from '../utils';
 
-import { TvShowSlider, TvModal } from "../Components/index";
+import { TvShowSlider, TvModal } from '../Components/index';
 
 // styled
 import {
@@ -19,23 +19,23 @@ import {
   MoviInfo,
   Overview,
   MainMovie,
-} from "../styled/MainBanner";
+} from '../styled/MainBanner';
 
-import { Slider, SliderTitle } from "../styled/MainConent";
-import { PathMatch, useMatch, useNavigate } from "react-router-dom";
+import { Slider, SliderTitle } from '../styled/MainConent';
+import { PathMatch, useMatch, useNavigate } from 'react-router-dom';
 
 const TV = () => {
   const history = useNavigate();
-  const bigMovieMatch: PathMatch<string> | null = useMatch("tv/:tvId");
+  const bigMovieMatch: PathMatch<string> | null = useMatch('tv/:tvId');
 
   const { isLoading: isLoadingPopular, data: popularData } =
-    useQuery<IGetShowResult>(["TvShow", "Tvpopular"], getTvpopular);
+    useQuery<IGetShowResult>(['TvShow', 'Tvpopular'], getTvpopular);
 
   const { isLoading: isLoadingTvTopRated, data: tvTopRatedData } =
-    useQuery<IGetShowResult>(["TvShow", "TvTopRated"], getTvTopRated);
+    useQuery<IGetShowResult>(['TvShow', 'TvTopRated'], getTvTopRated);
 
   const { isLoading: isLoadingTvlatest, data: tvlatestData } =
-    useQuery<IGetShowResult>(["TvShow", "Tvlatest"], getTvlatest);
+    useQuery<IGetShowResult>(['TvShow', 'Tvlatest'], getTvlatest);
 
   const loading = isLoadingPopular || isLoadingTvTopRated || isLoadingTvlatest;
 
@@ -52,7 +52,7 @@ const TV = () => {
         <>
           <Banner
             bgPhoto={makeImgagePath(
-              popularData?.results[0].backdrop_path || ""
+              popularData?.results[0].backdrop_path || ''
             )}
           >
             <Title>{popularData?.results[0].name}</Title>

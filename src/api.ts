@@ -1,5 +1,5 @@
-const API_KEY = "d3778288044eae23cc3907f31a4fdd6f";
-const BASE_PATH = "https://api.themoviedb.org/3";
+const API_KEY = 'd3778288044eae23cc3907f31a4fdd6f';
+const BASE_PATH = 'https://api.themoviedb.org/3';
 
 //영화 목록
 interface IMovie {
@@ -197,7 +197,7 @@ export interface IGetSearch {
 
 export interface SearchResult {
   adult?: boolean;
-  backdrop_path: null | string;
+  backdrop_path: string;
   genre_ids: number[];
   id: number;
   media_type: string;
@@ -205,7 +205,7 @@ export interface SearchResult {
   original_title?: string;
   overview: string;
   popularity: number;
-  poster_path: null | string;
+  poster_path: string;
   release_date?: Date;
   title?: string;
   video?: boolean;
@@ -279,5 +279,15 @@ export async function getSearch(keyword: string) {
     await fetch(
       `${BASE_PATH}/search/multi?api_key=${API_KEY}&language=ko&query=${keyword}&include_adult=true&region=kr`
     )
+  ).json();
+}
+
+//검색 세부정보
+export async function getSearchDetail(
+  type: string | undefined,
+  id: string | undefined
+) {
+  return (
+    await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}&language=ko`)
   ).json();
 }
